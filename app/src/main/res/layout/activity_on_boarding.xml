@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_background_normal"
+    tools:context=".OnBoardingActivity" >
+
+    <ImageView
+        android:id="@+id/commutequest_logo"
+        android:layout_width="32dp"
+        android:layout_height="34dp"
+        android:contentDescription="App Logo"
+        android:src="@drawable/img_commutequest_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="94dp"
+        android:layout_marginTop="240dp"
+        />
+
+    <TextView
+        android:id="@+id/text_name_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:fontFamily="@font/inter_bold_18"
+        android:textColor="@color/font_black"
+        android:textFontWeight="600"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@id/commutequest_logo"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="240dp"
+        />
+
+    <ImageView
+        android:id="@+id/bus_onboarding_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="On Boarding Bus Icon"
+        android:src="@drawable/img_bus_onboarding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="87dp"
+        android:layout_marginTop="278dp"
+        />
+
+    <TextView
+        android:id="@+id/text_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_bold_18"
+        android:text="Bahagiakan hidupmu dengan\nAkses Mudah Transportasi\nUmum dengan Commute Quest"
+        android:textColor="@color/font_black"
+        android:textSize="24sp"
+        android:textFontWeight="600"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bus_onboarding_logo"
+        android:layout_marginTop="10dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_start_adventure"
+        android:layout_width="326dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_normal_variablefont"
+        android:text="Mulai Petualanganmu!"
+        android:textSize="15sp"
+        android:textColor="@color/font_button_white"
+        android:textAllCaps="false"
+        android:background="@drawable/button_rounded_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_welcome"
+        android:layout_marginTop="10dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

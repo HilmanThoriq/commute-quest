@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="font_black">#19191B</color>
+    <color name="font_label_black">#1E1E1E</color>
+    <color name="font_placeholder_grey">#B3B3B3</color>
+    <color name="font_button_white">#F5F5F5</color>
+    <color name="background_button_black">#2C2C2C</color>
+    <color name="base_background_normal">#FFFFFF</color>
+
+</resources>
