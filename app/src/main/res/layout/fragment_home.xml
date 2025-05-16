@@ -5,42 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Search bar di bagian atas sesuai dengan UI di gambar -->
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Search bar container -->
     <androidx.cardview.widget.CardView
         android:id="@+id/search_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:cardCornerRadius="24dp"
-        app:cardElevation="2dp"
+        app:cardElevation="4dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
+            android:id="@+id/search_summary_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:padding="8dp">
+            android:padding="12dp">
 
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="8dp"
-                android:src="@drawable/ic_home"
-                android:contentDescription="Location icon" />
+                android:src="@drawable/ic_search"
+                android:contentDescription="Search icon" />
 
-            <EditText
-                android:id="@+id/search_edit_text"
+            <TextView
+                android:id="@+id/search_summary_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:background="@null"
-                android:hint="Cari Bus, Rute atau Tujuan Anda"
-                android:inputType="text"
+                android:text="Cari Bus, Rute atau Tujuan Anda"
                 android:padding="8dp" />
 
             <ImageView
@@ -48,33 +57,216 @@
                 android:layout_height="24dp"
                 android:layout_marginEnd="8dp"
                 android:src="@drawable/ic_profile"
-                android:contentDescription="Search icon" />
+                android:contentDescription="Profile icon" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Section Rekomendasi Rute -->
-    <TextView
-        android:id="@+id/rekomendasi_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rekomendasi Rute"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_container" />
-
-    <!-- Implementasi RecyclerView untuk menampilkan daftar rute -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recommended_routes_recyclerview"
+    <!-- Expanded Search Panel -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/expanded_search_panel"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:clipToPadding="false"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        app:layout_constraintTop_toBottomOf="@id/rekomendasi_title"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="4dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <ImageView
+                    android:id="@+id/back_button"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_back"
+                    android:contentDescription="Back button" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rute Perjalanan"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginStart="16dp" />
+            </LinearLayout>
+
+            <!-- Origin input -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_origin"
+                    android:contentDescription="Origin marker"
+                    app:tint="#4CAF50" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dari"
+                        android:textSize="12sp"
+                        android:textColor="#757575" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/origin_edit_text"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="Lokasi asal"
+                            android:background="@null"
+                            android:padding="4dp"
+                            android:inputType="text"
+                            android:imeOptions="actionNext" />
+
+                        <ProgressBar
+                            android:id="@+id/origin_loading"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/use_current_location"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_location"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Use current location" />
+            </LinearLayout>
+
+            <!-- Destination input -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_destination"
+                    android:contentDescription="Destination marker"
+                    app:tint="#E53935" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ke"
+                        android:textSize="12sp"
+                        android:textColor="#757575" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/destination_edit_text"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:hint="Lokasi tujuan"
+                            android:background="@null"
+                            android:padding="4dp"
+                            android:inputType="text"
+                            android:imeOptions="actionDone" />
+
+                        <ProgressBar
+                            android:id="@+id/destination_loading"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Search button -->
+            <Button
+                android:id="@+id/search_route_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cari Rute"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/rounded_button" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Autocomplete Results RecyclerView -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/autocomplete_results_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/expanded_search_panel"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/autocomplete_results"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:maxHeight="300dp"
+            android:clipToPadding="false" />
+    </androidx.cardview.widget.CardView>
+    <!-- Tombol "Mulai Navigasi di Google Maps" -->
+    <Button
+        android:id="@+id/start_navigation_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_button_primary"
+        android:padding="12dp"
+        android:text="Mulai Navigasi di Google Maps"
+        android:textColor="@color/font_button_white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

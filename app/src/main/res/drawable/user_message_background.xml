@@ -1,0 +1,12 @@
+<!-- res/drawable/user_message_bubble.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="48dp"
+    android:viewportWidth="120"
+    android:viewportHeight="48">
+    <path
+        android:fillColor="#FFDCF8C6"
+    android:pathData="M12,0h96c6.6,0 12,5.4 12,12v24c0,6.6 -5.4,12 -12,12H12c-6.6,0 -12,-5.4 -12,-12V12C0,5.4 5.4,0 12,0z"
+    android:strokeWidth="0.5"
+    android:strokeColor="#FFB2B2B2"/>
+</vector>

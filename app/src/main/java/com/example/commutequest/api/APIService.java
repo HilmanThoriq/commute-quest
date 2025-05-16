@@ -2,6 +2,8 @@ package com.example.commutequest.api;
 
 import com.example.commutequest.ResetPasswordFragment;
 import com.example.commutequest.model.AuthResponse;
+import com.example.commutequest.model.MapsLinkRequest;
+import com.example.commutequest.model.MapsLinkResponse;
 import com.example.commutequest.model.ProfileResponse;
 import com.example.commutequest.model.LoginRequest;
 import com.example.commutequest.model.RegisterRequest;
@@ -13,6 +15,10 @@ import com.example.commutequest.model.ChangePasswordRequest;
 import com.example.commutequest.model.ChangePasswordResponse;
 import com.example.commutequest.model.ResetPasswordRequest;
 import com.example.commutequest.model.ResetPasswordResponse;
+import com.example.commutequest.model.AutocompleteResponse;
+import com.example.commutequest.model.RouteRequest;
+import com.example.commutequest.model.RouteResponse;
+import com.example.commutequest.HomeFragment;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -43,6 +49,17 @@ public interface APIService {
     @POST("reset-password")
     Call<ChangePasswordResponse> changePassword(@Body ChangePasswordRequest request);
 
-
     Call<ResetPasswordFragment.ChangePasswordResponse> changePassword(String authHeader, ResetPasswordFragment.ChangePasswordRequest request);
+
+    // Add autocomplete endpoint
+    @POST("auto-complete")
+    Call<AutocompleteResponse> getAutocompletePlaces(@Header("Authorization") String authHeader, @Body HomeFragment.AutocompleteRequest request);
+
+    // Add route endpoint
+    @POST("get-route")
+    Call<RouteResponse> getRoute(@Header("Authorization") String authHeader, @Body RouteRequest request);
+
+    @POST("get-maps-link")
+    Call<MapsLinkResponse> getMapsLink(@Header("Authorization") String authHeader, @Body MapsLinkRequest request);
+
 }

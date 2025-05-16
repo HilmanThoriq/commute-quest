@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- badge_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#818181" />
+    <stroke
+        android:width="2dp"
+        android:color="#E6E6E6" />
+</shape>

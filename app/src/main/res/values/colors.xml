@@ -7,4 +7,9 @@
     <color name="background_button_black">#2C2C2C</color>
     <color name="base_background_normal">#FFFFFF</color>
 
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="message_bubble_incoming">#E3F2FD</color>
+    <color name="message_bubble_outgoing">#E1F5FE</color>
 </resources>
